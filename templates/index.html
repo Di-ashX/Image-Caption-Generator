@@ -1,0 +1,80 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cap</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" action="{% url 'result' %}">
+        {% csrf_token %}
+        <input type="file" name="sentFile" />
+        <input type="submit" name="submit" value="Upload" />
+    </form>
+    
+</body>
+</html> -->
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Image Captioning</title>
+   
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-light bg-dark justify-content-center">
+  <span class="navbar-brand mb-0 h1 text-light text-center">Deep Learning Based Image Caption Generator</span>
+</nav>
+
+<br>
+<div class="container justify-content-center border border-light rounded">
+  <p class="font-italic"><b>Caption Generation</b> is a challenging artificial intelligence problem where a textual description must be generated for a given photograph. It requires both methods from computer vision to understand the context of the image and a language model from the field of NLP to sum the understanding of the image into words in a right order. Recenty, Deep learning methods have achieved state-of-the-art results on examples of this problems</p>
+  <p class="font-italic"><b>Instructions : </b> First Choose the image and then click on upload. Uploaded image is shown after uploading. Then click on "Generate Caption" to get the results. If at any point of time , you wanna go back, press "Reset" button </p>
+</div>
+<br>
+<div class="container justify-content-center border border-dark rounded">
+    <div class="row">
+        <div class=" col-sm-6 mt-5 mb-5 text-center">  
+    
+            <div class="btn-group-vertical">
+              <form action="{% url 'result' %}" method="post">{% csrf_token %}
+                <button type="submit" name="index" class="btn btn-outline-primary float-center my-1"value="index">Generate Caption</button>
+             </form>
+             
+                <form action="{% url 'index' %}" method="post">{% csrf_token %}
+                  <button type="submit" name="index" class="btn btn-outline-primary float-center my-1"value="index">Reset</button>
+               </form>
+              
+              </div>
+</div>
+<div class=" col-sm-6 justify-content-center mt-5 mb-5 text-center">
+    <form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">
+        {% csrf_token %}
+        <div class="form-group">
+        <input type="file" name="sentFile" />
+        <br>
+       <button class=" btn btn-outline-dark text-left "> <input class=" bg-dark text-light "type="submit" name="submit" value="Upload" /></button>
+    </div>
+    </form>
+</div>
+    </div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
