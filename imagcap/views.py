@@ -13,6 +13,8 @@ from django.core.files.storage import default_storage
 from tensorflow.keras.applications.xception import Xception
 import time
 import math
+from gTTS.templatetags.gTTS import say
+from gTTS.cache import remove_cache
 #from tensorflow.keras.models import Model
 
 
@@ -21,7 +23,7 @@ def index(request):
     if default_storage.exists("pic.jpg"):
         #print("yes")
         default_storage.delete("pic.jpg")
-    
+    remove_cache()
     return render(request, 'index.html')
 
 
@@ -63,11 +65,13 @@ def result(request):
     #photo = request.POST.get('sentFile', False)
         caption = generate_desc(model, tokenizer, pred, 93)
         caption = caption.strip('startseq').strip('endseq')
+
         end=time.time();
+        capspeech = say(language='en-us', text="Text From Views")
         time_taken=end-start
         digits=5
         time_taken  = truncate(time_taken, digits)
-        return render(request, 'result.html', {'caption': caption, 'time_taken': time_taken})
+        return render(request, 'result.html', {'caption': caption, 'time_taken': time_taken, 'capspeech': capspeech})
     else:
         return render(request,'index.html')
 

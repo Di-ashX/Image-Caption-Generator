@@ -16,6 +16,7 @@
 </body>
 </html> -->
 
+{% load gTTS %}
 
 <!doctype html>
 <html lang="en">
@@ -32,6 +33,29 @@
       .btn-primary:hover{
        background-color: purple;
       }
+
+      audio {
+/*border-radius: 90px;*/
+width: 250px;
+height: 45px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+audio::-webkit-media-controls-mute-button {
+display: none !important;
+}
+
+audio::-webkit-media-controls-volume-slider {
+display: none !important;
+}
+
+audio::-webkit-media-controls-volume-control-container.closed {
+display: none !important;
+}
+audio::-webkit-media-controls-volume-control-container{
+display: none !important;
+}
     </style>
   </head>
   <body>
@@ -59,6 +83,12 @@
     
     
    <p style=" font-family:'Serif'"><b>Caption Generated : </b> {{caption}}</p>
+   
+  <audio
+   
+    src="{% say 'en-us' caption %}"
+    controls
+></audio>
    <p style=" font-family:'Serif'"><b>Model Name : </b> Xception</p>
    <p style=" font-family:'Serif'"><b>Time Taken : </b> {{time_taken}} seconds</p>
    <p style=" font-family:'Serif'"><b>Model Size : </b> 63 mb</p>
